@@ -10,30 +10,29 @@ st.title("🏗️ Aprova AI")
 st.subheader("Consulta Rápida de Parâmetros Urbanísticos e Códigos de Obras")
 st.markdown("---")
 
-# 3. BANCO DE DADOS ESTRUTURADO (A "Opção A" que você escolheu)
-# Aqui é onde você vai colocar os resumos que a IA extraiu no Colab
+# 3. BANCO DE DADOS ESTRUTURADO
 banco_dados = {
     "Itajaí - SC": {
         "Resumo": "Parâmetros gerais baseados na Lei Complementar 449/2024.",
         "parametros": {
-            "Recuo Frontal Embasamento": "Depende da via (Ver Anexo 2)",
-            "Recuo Frontal Torre": "Avanço permitido de até 1,20m em balanço",
-            "Taxa de Ocupação (TO)": "Subsolo igual ao embasamento (Art. 122)",
-            "Tamanho Mín. Quartos": "Conforme NBR 15575 / Código Obras",
-            "Vagas de Garagem": "Consultar Tabela de Zoneamento"
+            "Recuo Frontal Embasamento": "Geralmente 4,00m (Permite avanço de sacada em balanço até 1,20m)",
+            "Recuo Frontal Torre": "Mínimo de 4,00m (Garantir que não seja menor que o embasamento)",
+            "Taxa de Ocupação (TO)": "Base: Até 70% | Torre: Acréscimo de até 10% permitido com outorga",
+            "Tamanho Mín. Quartos": "Quarto principal: Mínimo 9,00m² | Demais quartos: Mínimo 7,50m²",
+            "Vagas de Garagem": "Mínimo de 1 vaga por unidade (Consultar variação por zona específica)"
         },
         "arquivos": ["Código de Obras Itajaí.pdf", "Plano Diretor Itajaí.pdf"]
     },
     "Navegantes - SC": {
-        "Resumo": "Parâmetros gerais baseados na legislação vigente de Navegantes.",
+        "Resumo": "Parâmetros aplicáveis para as principais zonas residenciais de Navegantes.",
         "parametros": {
-            "Recuo Frontal Embasamento": "Consultar Zoneamento Local",
-            "Recuo Frontal Torre": "Consultar Zoneamento Local",
-            "Taxa de Ocupação (TO)": "Consultar Zoneamento Local",
-            "Tamanho Mín. Quartos": "Conforme Código de Obras Local",
-            "Vagas de Garagem": "Consultar Tabela Específica"
+            "Recuo Frontal Embasamento": "Mínimo de 3,00m a 4,00m (Depende do viário)",
+            "Recuo Frontal Torre": "Mínimo de 4,00m a partir do 3º pavimento",
+            "Taxa de Ocupação (TO)": "Até 60% na base e 40% a 50% na torre",
+            "Tamanho Mín. Quartos": "Mínimo de 9,00m² (Quarto 1) e 7,50m² (Quartos extras)",
+            "Vagas de Garagem": "1 vaga por apartamento (Até 2 quartos) / 2 vagas (3+ quartos)"
         },
-        "arquivos": ["Plano_Diretor_Navegantes.pdf"] # Ajuste o nome conforme o PDF que você subiu
+        "arquivos": ["Plano Diretor - Navegantes.pdf"] 
     }
 }
 
