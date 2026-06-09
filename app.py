@@ -146,7 +146,7 @@ preco_venda_m2 = st.sidebar.number_input("Preço de Venda Esperado (R$/m²)", mi
 regras = zonas_mock[zona]
 area_terreno = largura * comprimento
 area_max_computavel = area_terreno * regras["CA"]
-area_projecao_maxima = area_terreno * rules_to_apply = regras["TO"]
+area_projecao_maxima = area_terreno * regras["TO"]
 area_ocupada_terreo = area_terreno * regras["TO"]
 area_livre_terreo = area_terreno - area_ocupada_terreo
 
