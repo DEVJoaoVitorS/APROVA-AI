@@ -850,6 +850,12 @@ with tab1:
         st.markdown('<div class="section-label">Exportar Laudo</div>', unsafe_allow_html=True)
 
         def gerar_pdf():
+            # Função para remover travessões e bullets que o FPDF (latin-1) não entende
+            def sanitizar(txt):
+                if not isinstance(txt, str):
+                    return str(txt)
+                return txt.replace('—', '-').replace('–', '-').replace('•', '-')
+            
             pdf = FPDF()
             pdf.add_page()
             pdf.set_margins(20, 20, 20)
@@ -893,7 +899,7 @@ with tab1:
                 pdf.cell(65, 7, label.upper(), ln=False)
                 pdf.set_font("Helvetica", '', 11)
                 pdf.set_text_color(26, 26, 46)
-                pdf.cell(0, 7, str(valor), ln=True)
+                pdf.cell(0, 7, sanitizar(valor), ln=True)
 
             pdf.ln(4)
             pdf.set_font("Helvetica", 'B', 13)
@@ -919,7 +925,7 @@ with tab1:
                 pdf.cell(80, 7, label.upper(), ln=False)
                 pdf.set_font("Helvetica", '', 11)
                 pdf.set_text_color(26, 26, 46)
-                pdf.cell(0, 7, str(valor), ln=True)
+                pdf.cell(0, 7, sanitizar(valor), ln=True)
 
             pdf.ln(4)
             pdf.set_font("Helvetica", 'B', 13)
@@ -932,19 +938,22 @@ with tab1:
                 pdf.set_text_color(45, 106, 79)
                 pdf.set_font("Helvetica", 'B', 12)
                 pdf.set_xy(20, pdf.get_y())
-                pdf.cell(170, 10, "  APROVADO — PARAMETROS EM CONFORMIDADE", border=1, fill=True, ln=True, align='C')
+                # Trocado o travessão longo (—) por hífen (-)
+                pdf.cell(170, 10, "  APROVADO - PARAMETROS EM CONFORMIDADE", border=1, fill=True, ln=True, align='C')
             else:
                 pdf.set_fill_color(254, 245, 245)
                 pdf.set_draw_color(192, 57, 43)
                 pdf.set_text_color(192, 57, 43)
                 pdf.set_font("Helvetica", 'B', 12)
                 pdf.set_xy(20, pdf.get_y())
-                pdf.cell(170, 10, "  REPROVADO — REVISAO NECESSARIA", border=1, fill=True, ln=True, align='C')
+                # Trocado o travessão longo (—) por hífen (-)
+                pdf.cell(170, 10, "  REPROVADO - REVISAO NECESSARIA", border=1, fill=True, ln=True, align='C')
                 pdf.set_font("Helvetica", '', 10)
                 pdf.set_text_color(80, 80, 80)
                 for err in erros:
                     pdf.set_xy(25, pdf.get_y() + 2)
-                    pdf.cell(0, 6, f"• {err[:95]}", ln=True)
+                    # Trocado o bullet point (•) por hífen (-)
+                    pdf.cell(0, 6, sanitizar(f"- {err[:95]}"), ln=True)
 
             if aprovado:
                 pdf.ln(4)
@@ -954,7 +963,7 @@ with tab1:
 
                 indicadores = [
                     ("Area Maxima Computavel (CA Total)", f"{area_max_computavel:,.0f} m2"),
-                    ("Area Basica (CA Basico — sem outorga)", f"{area_basica:,.0f} m2"),
+                    ("Area Basica (CA Basico - sem outorga)", f"{area_basica:,.0f} m2"),
                     ("Area via Outorga Onerosa", f"{area_outorga:,.0f} m2"),
                     ("Unidades Estimadas", f"{unidades_estimadas} unidades de {tamanho_medio_apt:.0f} m2"),
                     ("VGV Estimado", f"R$ {vgv_estimado:,.2f}"),
@@ -969,7 +978,7 @@ with tab1:
                     pdf.cell(90, 7, label.upper(), ln=False)
                     pdf.set_font("Helvetica", '', 11)
                     pdf.set_text_color(26, 26, 46)
-                    pdf.cell(0, 7, str(valor), ln=True)
+                    pdf.cell(0, 7, sanitizar(valor), ln=True)
 
             # ROI
             pdf.ln(4)
