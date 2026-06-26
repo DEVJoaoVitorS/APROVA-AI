@@ -1073,6 +1073,8 @@ with tab2:
         envelope_torre = cubo_mesh3d(x0 + 1.5, x1 - 1.5, y0 + 1.5, y1 - 1.5, z_emb, z_max, '#2D6A4F', 0.25, 'Torre máxima')
 
         fig_3d = go.Figure(data=[terreno, envelope_emb, envelope_torre])
+        
+        # AQUI FOI ADICIONADA A CORREÇÃO DA COR DA LEGENDA PARA PRETO/ESCURO
         fig_3d.update_layout(
             scene=dict(
                 xaxis=dict(title='Testada (m)', backgroundcolor="#F8F7F4",
@@ -1088,8 +1090,12 @@ with tab2:
             margin=dict(l=0, r=0, b=0, t=0),
             paper_bgcolor='rgba(0,0,0,0)',
             height=520,
-            legend=dict(x=0, y=1, font=dict(size=11, family='Inter'),
-                        bgcolor='rgba(255,255,255,0.8)')
+            legend=dict(
+                x=0, 
+                y=1, 
+                font=dict(size=11, family='Inter', color='#1A1A2E'), # <--- CORREÇÃO AQUI
+                bgcolor='rgba(255,255,255,0.8)'
+            )
         )
         st.plotly_chart(fig_3d, use_container_width=True)
 
